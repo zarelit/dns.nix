@@ -72,6 +72,10 @@ let
         } // type.example;
         description = "SOA record";
       };
+      name = mkOption {
+        type = types.str;
+        default = name;
+      };
       __toString = mkOption {
         readOnly = true;
         visible = false;
@@ -79,7 +83,7 @@ let
     } // subzoneOptions;
 
     config = {
-      __toString = zone@{ TTL, SOA, ... }:
+      __toString = zone@{ TTL, SOA, name, ... }:
         ''
           $TTL ${toString TTL}
 
